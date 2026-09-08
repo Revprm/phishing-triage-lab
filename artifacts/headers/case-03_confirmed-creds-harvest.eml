@@ -1,0 +1,16 @@
+From: "Microsoft 365" <support@micorsoft-365security.com>
+Return-Path: <bounces@micorsoft-365security.com>
+Reply-To: <support@micorsoft-365security.com>
+Authentication-Results: spf=fail smtp.mailfrom=micorsoft-365security.com; dkim=fail header.d=micorsoft-365security.com; dmarc=fail
+Received: from mail.micorsoft-365security.com (203.0.113.77) by mx.company.local with ESMTPS id abc123
+Received: from localhost (unknown [203.0.113.77])
+Subject: Password expiry - action required
+Date: Tue, 19 Aug 2026 08:00:00 +0000
+To: victim@company.com
+X-Mailer: EvilKit
+MIME-Version: 1.0
+Content-Type: text/html
+
+<html>
+Your password expires today. Click here to keep your account: http://micorsoft-365security.com/login
+</html>

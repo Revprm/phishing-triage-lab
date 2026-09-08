@@ -1,0 +1,41 @@
+title: Phishing Lookalike Domain via Email
+id: 3f7a9e1a-5c2b-4a9d-9f0e-123456789abc
+status: experimental
+description: Detects typosquat/lookalike sender domains used in M365 credential harvest (Lab Case 03: micorsoft-365security.com)
+references:
+  - https://github.com/your-org/phishing-triage-lab
+  - docs/04_detection-engineering.md
+author: SOC Lab (Phishing Triage Lab - Splunk SOC)
+date: 2026-09-08
+logsource:
+  category: email
+  product: m365
+detection:
+  selection_lookalike:
+    Sender|contains:
+      - 'micorsoft'
+      - 'micosoft'
+      - 'paypa1'
+      - 'arnazon'
+      - 'g00gle'
+      - 'support-'
+      - '-security'
+      - '-login'
+      - 'appleid-'
+  selection_auth_fail:
+    AuthenticationResults|contains:
+      - 'spf=fail'
+      - 'dmarc=fail'
+  selection_burst:
+    # Enrich via correlation: same SenderDomain seen >10 times in 1h
+    # Implement as aggregation in SIEM (e.g., | where count>10)
+  condition: selection_lookalike and selection_auth_fail
+falsepositives:
+  - Legit marketing with hyphenated -security domain (tune via allowlist)
+  - Shortener domains (see separate rule for bit.ly / QR)
+level: high
+tags:
+  - attack.initial_access
+  - attack.t1566.002
+  - phishing
+  - lab.case-03

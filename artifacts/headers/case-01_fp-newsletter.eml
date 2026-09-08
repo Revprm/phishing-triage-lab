@@ -1,0 +1,15 @@
+From: "Company Benefits" <newsletter@company-benefits.com>
+Return-Path: <newsletter@company-benefits.com>
+Reply-To: <newsletter@company-benefits.com>
+Authentication-Results: spf=pass smtp.mailfrom=company-benefits.com; dkim=pass header.d=company-benefits.com; dmarc=pass
+Received: from mail.company-benefits.com (192.0.2.10) by mx.company.local with ESMTPS
+Received: from internal-relay.company.local (10.0.0.5) by mx.company.local
+Subject: Q3 Benefits Update
+Date: Wed, 20 Aug 2026 09:12:00 +0000
+To: employee@company.com
+List-Unsubscribe: <mailto:unsubscribe@company-benefits.com?subject=unsubscribe>, <https://company-benefits.com/unsubscribe>
+Precedence: bulk
+X-Mailer: CampaignMonitor
+
+Hello,
+Here is your Q3 Benefits Update: http://company-benefits.com/q3-update

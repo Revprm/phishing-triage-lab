@@ -1,0 +1,4 @@
+# Case 01 FP - known-good HR newsletter
+newsletter@company-benefits.com
+http://company-benefits.com/q3-update
+192.0.2.10

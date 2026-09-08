@@ -1,0 +1,7 @@
+# Case 03 Confirmed - lookalike M365
+support@micorsoft-365security.com
+micorsoft-365security.com
+http://micorsoft-365security.com/login
+203.0.113.77
+44d88612fea8a8f36de82e1278abb02f
+# VT expected: >5 hits, AbuseIPDB high

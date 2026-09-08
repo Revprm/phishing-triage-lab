@@ -1,0 +1,26 @@
+[project]
+name = "phishlab"
+version = "1.1.0"
+description = "Phishing Triage Lab (Splunk SOC) - Splunk SPL + IOC enrichment + header forensics"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "SOC Analyst Lab" }]
+requires-python = ">=3.10"
+dependencies = ["requests>=2.31", "python-dotenv>=1.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "ruff"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

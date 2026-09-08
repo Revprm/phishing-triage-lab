@@ -1,0 +1,36 @@
+// Phishing Triage Lab (Splunk SOC) - Splunk hunts
+// See docs/04_detection-engineering.md
+
+// 1. Lookalike domain burst (Case 03: micorsoft-* M365 typosquat)
+index=email sourcetype=ms:o365:management
+| eval sender_domain=mvindex(split(From,"@"),1)
+| stats count values(Subject) as subjects values(recipient) as rcpts by sender_domain
+| where count>10
+| eval is_lookalike=if(match(sender_domain, "micorsoft|micosoft|paypa1|arnazon|g00gle|support-|-security|-login"), 1, 0)
+| where is_lookalike=1 OR count>50
+| sort -count
+
+// 2. Burst across subjects from same sender domain (Case 01/03: mass vs targeted)
+// | same as above, but look for 400 recipients (Case 01 bulk) vs single (Case 03 targeted)
+
+// 3. Phish + attachment with risky extension (Case 02: .pdf with QR, and general T1566.001)
+index=email
+| where match(attachment, ".*\.(iso|img|html|htm|xlsm|one|lnk|zip)(\".*|$)")
+| stats count by sender_domain, attachment
+| where count>5
+
+// 4. Follow-on after Confirmed creds-harvest - mailbox rules (T1137) - Splunk (Case 03)
+// Hunt mailbox persistence within 24h post-click
+index=o365 sourcetype="o365:management" Workload=Exchange Operation IN ("New-InboxRule","Set-InboxRule","UpdateInboxRules")
+| where UserId="victim@company.com"
+| eval _time=strftime(_time, "%Y-%m-%d %H:%M:%S")
+| table _time UserId Operation ClientIP ResultStatus Rules
+| sort -_time
+
+// 5. Campaign sweep - same Subject/lookalike tenant-wide (Case 02 INV-8841, Case 03 Password expiry)
+index=email
+| where like(Subject,"INV-8841%") OR like(Subject,"Password expiry%")
+| eval sender_domain=mvindex(split(Sender,"@"),1)
+| stats dc(recipient) as rcpts values(recipient) as rcpt_list count by sender_domain Subject
+| where count>5 OR rcpts>5
+| sort -count

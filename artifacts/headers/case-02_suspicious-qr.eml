@@ -1,0 +1,26 @@
+From: "Accounts Payable" <ap@invoice-portal-secure.com>
+Return-Path: <bounce@invoice-portal-secure.com>
+Reply-To: <ap-reply@micorsoft-365security.com>
+Authentication-Results: spf=fail smtp.mailfrom=invoice-portal-secure.com; dkim=none; dmarc=none
+Received: from smtp.invoice-portal-secure.com (198.51.100.45) by mx.company.local with ESMTPS
+Subject: Overdue invoice #INV-8841 - Immediate Payment Required
+Date: Tue, 19 Aug 2026 14:30:00 +0000
+To: finance@company.com
+X-Mailer: PhishMailer 2.0
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="boundary"
+
+--boundary
+Content-Type: text/html
+
+<html>Dear Customer,<br>
+Your invoice #INV-8841 is overdue. Please pay via QR code in attached PDF.<br>
+Scan QR or visit http://bit.ly/INV-8841-pay<br>
+Generic greeting, urgency language, first-seen sender.
+</html>
+--boundary
+Content-Type: application/pdf; name="invoice-8841.pdf"
+Content-Disposition: attachment; filename="invoice-8841.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKJeLjz9M=  (fake PDF stub)

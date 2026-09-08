@@ -1,0 +1,14 @@
+From: "Microsoft Security" <support@micorsoft-365security.com>
+Reply-To: support@micorsoft-365security.com
+Return-Path: <bounces@micorsoft-365security.com>
+Authentication-Results: spf=fail smtp.mailfrom=micorsoft-365security.com; dkim=fail; dmarc=fail
+Received: from mail.micorsoft-365security.com (198.51.100.23) by mx.company.local with ESMTPS
+Received: from localhost (unknown [192.0.2.1])
+Subject: Password expiry - action required
+Date: Wed, 20 Aug 2026 09:12:00 +0000
+To: victim@company.com
+List-Unsubscribe: <mailto:unsubscribe@company-benefits.com>
+X-Mailer: PhishKit
+
+Hello,
+Your password expires today. Please login at http://micorsoft-365security.com/login

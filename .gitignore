@@ -1,0 +1,24 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+*.pyc
+.pytest_cache/
+
+# Lab outputs - generated, regeneratable via `make demo` or --json/--csv
+# Keep only canonical markdown reports for portfolio; ignore derived json/csv + ad-hoc
+report.md
+artifacts/reports/*.json
+artifacts/reports/*.csv
+# Ignore per-case derived md if needed, but keep canonical case reports
+# !artifacts/reports/case-*.md  # uncomment to keep per-case md in git; currently kept via case commits
+!artifacts/reports/report.md
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,10 @@
+# Sample IOC input - safe test values, defanged or RFC5737
+# Mix of clean + known-bad for scoring demo. Replace with case IOCs.
+newsletter@company-benefits.com
+http://company-benefits.com/q3-update
+192.0.2.10
+http://bit.ly/INV-8841-pay
+micorsoft-365security.com
+http://micorsoft-365security.com/login
+44.51.69.32
+44d88612fea8a8f36de82e1278abb02f

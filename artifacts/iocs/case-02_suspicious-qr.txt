@@ -1,0 +1,5 @@
+# Case 02 Suspicious - QR shortener
+http://bit.ly/INV-8841-pay
+198.51.100.45
+invoice-8841.pdf
+# decoded QR payload: hxxp://bit[.]ly/INV-8841-pay
