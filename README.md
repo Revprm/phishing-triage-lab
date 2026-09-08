@@ -14,19 +14,21 @@ This lab handles phishing emails end-to-end:
 
 Flow: `Intake → Header Analysis → IOC Extract → Enrich → Score → Verdict → Document` - see `docs/02_methodology.md`.
 
-```
-Reporter / Alert → [ Intake ] → [ Header Forensics ] → [ IOC Extraction ]
-                                                        ↓
-                                              enrich.py (phishlab package)
-                                    ┌───────────┼───────────┐
-                                VirusTotal  AbuseIPDB   OTX / URLScan
-                                    └───────────┼───────────┘
-                                                        ↓
-                                          [ Heuristic Scoring ]
-                                                        ↓
-                                       [ Verdict → Ticket ]
-                                                        ↓
-                                     [ Containment + MITRE + Timeline ]
+```mermaid
+flowchart TD
+    A[Reporter / Alert] --> B[Intake]
+    B --> C[Header Forensics<br/>SPF / DKIM / DMARC]
+    C --> D[IOC Extraction<br/>defang aware]
+    D --> E[enrich.py<br/>phishlab package]
+    E --> F[VirusTotal]
+    E --> G[AbuseIPDB]
+    E --> H[OTX / URLScan]
+    F --> I[Heuristic Scoring]
+    G --> I
+    H --> I
+    I --> J[Verdict 0-100<br/>FP / Suspicious / Confirmed]
+    J --> K[Containment + MITRE + Timeline]
+    J --> L[Splunk SPL Hunt]
 ```
 
 ## Repo Structure

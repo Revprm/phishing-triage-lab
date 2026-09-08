@@ -14,14 +14,18 @@ How the lab works: NIST workflow, Diamond Model, MITRE mapping, and scoring.
 
 ## Diamond Model
 
-```
-        Phishing Email (Capability)
-              /        \
-   Attacker  /          \ Victim
-            /  Infrastructure \
-           /    (lookalike domain, IP, shortener)
-          /____________________\
-                Timeline →
+```mermaid
+flowchart TD
+    CAP[Phishing Email<br/>Capability]
+    ATT[Attacker]
+    VIC[Victim]
+    INF[Infrastructure<br/>lookalike domain<br/>IP 203.0.113.77<br/>http://.../login]
+    TIM[Timeline]
+    CAP --- ATT
+    CAP --- VIC
+    ATT --- INF
+    VIC --- INF
+    INF --- TIM
 ```
 
 Example investigation (lookalike M365 harvest):
@@ -47,10 +51,12 @@ See `playbook.md:Step 6` for MITRE mapping.
 
 ## Scoring
 
-```
-0 ─────── 39 ─────── 74 ─────── 100
-  FP         Suspicious    Confirmed
-  monitor    escalate      block
+```mermaid
+flowchart LR
+    FP[FP<br/>0-39<br/>monitor]
+    SUS[Suspicious<br/>40-74<br/>escalate]
+    CONF[Confirmed<br/>75-100<br/>block]
+    FP --> SUS --> CONF
 ```
 
 Weights (from `src/phishlab/scoring.py:5`):

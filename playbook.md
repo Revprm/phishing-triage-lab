@@ -5,6 +5,11 @@
 
 This runbook defines the steps the lab follows. `enrich.py` / `phishlab` automates Step 4; other steps are manual and documented in `artifacts/reports/`.
 
+```mermaid
+flowchart LR
+    S1[Intake] --> S2[Header Forensics] --> S3[Extract<br/>URLs / Attachments / QR] --> S4[Enrich<br/>VT / AbuseIPDB / OTX / URLScan] --> S5[Verdict<br/>0-100] --> S6[Document + Contain<br/>MITRE + Timeline]
+```
+
 ---
 
 ## Step 1 - Intake
