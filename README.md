@@ -108,7 +108,7 @@ Signals: VT ≥5 hits (+90), AbuseIPDB ≥75, OTX ≥3 (+20), lookalike +25, sho
 | `make header FILE=artifacts/headers/sample.eml` | Header forensics |
 | `make test` | Run tests |
 
-## Sources (safe, no detonation)
+## Sources
 
 - LetsDefend SOC Simulator, CyberDefenders, URLScan/VirusTotal public samples (sandbox only, defang IOCs)
 - EICAR test hash `44d88612fea8a8f36de82e1278abb02f` for safe scoring tests
