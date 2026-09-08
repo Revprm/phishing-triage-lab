@@ -1,73 +1,73 @@
 # Enrichment Report - `artifacts/iocs/iocs-sample.txt`
-Generated: 2026-09-08 10:19 UTC · Tool: phishlab v1.1 (enrich.py)
+Generated: 2026-09-08 11:26 UTC · Tool: phishlab v1.1 (enrich.py)
 
 | IOC (refanged display) | Type | Score | Verdict | Key signals |
 |---|---|---|---|---|
-| newsletter[@]company-benefits[.]com | email | 0 | Likely-benign / FP (monitor) | mock: known-good sample (+0) |
-| hxxp://company-benefits[.]com/q3-update | url | 0 | Likely-benign / FP (monitor) | mock: known-good sample (+0) |
-| 192[.]0[.]2[.]10 | ip | 0 | Likely-benign / FP (monitor) | mock: known-good sample (+0) |
-| hxxp://bit[.]ly/INV-8841-pay | url | 50 | Suspicious (escalate Tier-2) | mock: shortener, unverified (+50) |
-| micorsoft-365security[.]com | domain | 85 | Confirmed-malicious (block + incident) | mock: lookalike M365 domain (+85) |
-| hxxp://micorsoft-365security[.]com/login | url | 85 | Confirmed-malicious (block + incident) | mock: lookalike M365 domain (+85) |
-| 44[.]51[.]69[.]32 | ip | 0 | Likely-benign / FP (monitor) | no hits |
-| 44d88612fea8a8f36de82e1278abb02f | md5 | 80 | Confirmed-malicious (block + incident) | EICAR test signature (+80) |
+| newsletter[@]company-benefits[.]com | email | 0 | Likely-benign / FP (monitor) | no hits |
+| hxxp://company-benefits[.]com/q3-update | url | 0 | Likely-benign / FP (monitor) | no hits |
+| 192[.]0[.]2[.]10 | ip | 0 | Likely-benign / FP (monitor) | VT 0 detections (+0) |
+| hxxp://bit[.]ly/INV-8841-pay | url | 15 | Likely-benign / FP (monitor) | shortener, verify destination (+15) |
+| micorsoft-365security[.]com | domain | 25 | Likely-benign / FP (monitor) | VT 0 detections (+0); lookalike keyword (+25) |
+| hxxp://micorsoft-365security[.]com/login | url | 25 | Likely-benign / FP (monitor) | lookalike keyword (+25) |
+| 44[.]51[.]69[.]32 | ip | 0 | Likely-benign / FP (monitor) | VT 0 detections (+0) |
+| 44d88612fea8a8f36de82e1278abb02f | md5 | 100 | Confirmed-malicious (block + incident) | EICAR test signature (+80); VT 64/75 (+90) |
 
 ## Per-IOC detail
 
 ### newsletter@company-benefits.com (email) - 0/100
 - Verdict: Likely-benign / FP (monitor)
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'skipped': True, 'reason': 'type not supported'}
+- abuse: {'skipped': True, 'reason': 'not an IP'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
 ### http://company-benefits.com/q3-update (url) - 0/100
 - Verdict: Likely-benign / FP (monitor)
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'malicious': 0, 'total': 0, 'link': '', 'note': 'not found'}
+- abuse: {'skipped': True, 'reason': 'not an IP'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
 ### 192.0.2.10 (ip) - 0/100
 - Verdict: Likely-benign / FP (monitor)
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'malicious': 0, 'total': 89, 'link': 'https://www.virustotal.com/gui/search/192.0.2.10'}
+- abuse: {'skipped': True, 'reason': 'no ABUSEIPDB_KEY'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
-### http://bit.ly/INV-8841-pay (url) - 50/100
-- Verdict: Suspicious (escalate Tier-2)
+### http://bit.ly/INV-8841-pay (url) - 15/100
+- Verdict: Likely-benign / FP (monitor)
 - Heuristics: url-shortener
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'malicious': 0, 'total': 0, 'link': '', 'note': 'not found'}
+- abuse: {'skipped': True, 'reason': 'not an IP'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
-### micorsoft-365security.com (domain) - 85/100
-- Verdict: Confirmed-malicious (block + incident)
+### micorsoft-365security.com (domain) - 25/100
+- Verdict: Likely-benign / FP (monitor)
 - Heuristics: lookalike-keyword
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'malicious': 0, 'total': 89, 'link': 'https://www.virustotal.com/gui/search/micorsoft-365security.com'}
+- abuse: {'skipped': True, 'reason': 'not an IP'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
-### http://micorsoft-365security.com/login (url) - 85/100
-- Verdict: Confirmed-malicious (block + incident)
+### http://micorsoft-365security.com/login (url) - 25/100
+- Verdict: Likely-benign / FP (monitor)
 - Heuristics: lookalike-keyword
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'malicious': 0, 'total': 0, 'link': '', 'note': 'not found'}
+- abuse: {'skipped': True, 'reason': 'not an IP'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
 ### 44.51.69.32 (ip) - 0/100
 - Verdict: Likely-benign / FP (monitor)
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'malicious': 0, 'total': 89, 'link': 'https://www.virustotal.com/gui/search/44.51.69.32'}
+- abuse: {'skipped': True, 'reason': 'no ABUSEIPDB_KEY'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
-### 44d88612fea8a8f36de82e1278abb02f (md5) - 80/100
+### 44d88612fea8a8f36de82e1278abb02f (md5) - 100/100
 - Verdict: Confirmed-malicious (block + incident)
 - Heuristics: eicar-test-file
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'malicious': 64, 'total': 75, 'link': 'https://www.virustotal.com/gui/search/44d88612fea8a8f36de82e1278abb02f'}
+- abuse: {'skipped': True, 'reason': 'not an IP'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
 ## Overall recommendation
-- Highest score: 85 (micorsoft-365security.com) → Confirmed-malicious (block + incident)
+- Highest score: 100 (44d88612fea8a8f36de82e1278abb02f) → Confirmed-malicious (block + incident)
 - Action: **Block + Incident** - quarantine, reset creds, revoke sessions, EDR 24h.
 
 Note: Generated by `phishlab`. Defanged IOCs are safe to share. Re-run with live keys to replace `skipped` sources.

@@ -1,31 +1,31 @@
 # Enrichment Report - `artifacts/iocs/case-01_fp-newsletter.txt`
-Generated: 2026-09-08 10:19 UTC · Tool: phishlab v1.1 (enrich.py)
+Generated: 2026-09-08 12:03 UTC · Tool: phishlab v1.1 (enrich.py)
 
 | IOC (refanged display) | Type | Score | Verdict | Key signals |
 |---|---|---|---|---|
-| newsletter[@]company-benefits[.]com | email | 0 | Likely-benign / FP (monitor) | mock: known-good sample (+0) |
-| hxxp://company-benefits[.]com/q3-update | url | 0 | Likely-benign / FP (monitor) | mock: known-good sample (+0) |
-| 192[.]0[.]2[.]10 | ip | 0 | Likely-benign / FP (monitor) | mock: known-good sample (+0) |
+| newsletter[@]company-benefits[.]com | email | 0 | Likely-benign / FP (monitor) | no hits |
+| hxxp://company-benefits[.]com/q3-update | url | 0 | Likely-benign / FP (monitor) | no hits |
+| 192[.]0[.]2[.]10 | ip | 0 | Likely-benign / FP (monitor) | VT 0 detections (+0) |
 
 ## Per-IOC detail
 
 ### newsletter@company-benefits.com (email) - 0/100
 - Verdict: Likely-benign / FP (monitor)
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'skipped': True, 'reason': 'type not supported'}
+- abuse: {'skipped': True, 'reason': 'not an IP'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
 ### http://company-benefits.com/q3-update (url) - 0/100
 - Verdict: Likely-benign / FP (monitor)
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'malicious': 0, 'total': 0, 'link': '', 'note': 'not found'}
+- abuse: {'skipped': True, 'reason': 'not an IP'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
 ### 192.0.2.10 (ip) - 0/100
 - Verdict: Likely-benign / FP (monitor)
-- vt: {'skipped': True, 'reason': 'mock'}
-- abuse: {'skipped': True, 'reason': 'mock'}
-- otx: {'skipped': True, 'reason': 'mock'}
+- vt: {'malicious': 0, 'total': 89, 'link': 'https://www.virustotal.com/gui/search/192.0.2.10'}
+- abuse: {'skipped': True, 'reason': 'no ABUSEIPDB_KEY'}
+- otx: {'skipped': True, 'reason': 'no OTX_API_KEY'}
 
 ## Overall recommendation
 - Highest score: 0 (newsletter@company-benefits.com) → Likely-benign / FP (monitor)
