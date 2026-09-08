@@ -12,7 +12,6 @@ cat artifacts/reports/report.md         # 85 Confirmed (micorsoft), 50 Suspiciou
 PYTHONPATH=src python -m phishlab.header artifacts/headers/sample.eml
 # Score 0-30 Auth + 25 mismatch + 25 lookalike → verdict
 
-cat queries/splunk.spl                   # Splunk hunts
 ```
 
 ## Full Walkthrough
@@ -36,16 +35,13 @@ Regex + defang handling, dedup, classification. See `src/phishlab/extract.py:20`
 ### 4. Enrichment & Scoring (2 min)
 - Mock vs live (keys in `.env`). Code: `src/phishlab/enricher.py`, weights in `src/phishlab/scoring.py:5` + `src/phishlab/heuristics.py:5`.
 
-### 5. Detection (1 min)
-```bash
-cat queries/splunk.spl
-cat queries/sigma.yml
-```
-Lookalike burst, campaign sweep, attachment hunt, mailbox-rule follow-on (Case 03).
+### 5. Review (1 min)
+- Check `artifacts/reports/report.md` and verdict.
+- Review MITRE mapping in `docs/02_methodology.md`.
 
 ### 6. Documentation (1 min)
 - Reports: `artifacts/reports/report.md` (generated) + `report.json` for automation.
-- See `docs/05_analyst-notes.md` for gaps & next steps.
+- See `docs/04_notes.md` for gaps & next steps.
 
 ## Checklist
 

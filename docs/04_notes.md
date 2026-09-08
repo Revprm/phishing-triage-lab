@@ -32,12 +32,6 @@ Learnings and next steps after initial testing.
 | P2 | MISP / TheHive export (`--misp` JSON) | Medium |
 | P3 | Docker + `make docker-demo` | Low |
 
-## With Splunk
-
-- Ingest `artifacts/reports/report.json` into Splunk (`index=phishlab`), dashboard `earliest=-30d` verdict trend.
-- Correlate `report.json:ip` with `proxy_logs` for GET to `micorsoft-365security.com/login`.
-- Use `phishlab` as Splunk custom search command (`| phishlab iocs`).
-
 ---
 
 *Last updated: 2026-09-08.*

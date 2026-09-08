@@ -1,7 +1,7 @@
 """
-Phishing Triage Lab (Splunk SOC) - phishlab package.
+Phishing Triage Lab - phishlab package.
 
-Modular toolkit for Splunk SOC phishing triage:
+Modular toolkit for phishing triage:
 - extract : IOC regex + defang handling
 - header  : Email header forensics
 - enricher: Threat intel clients (VT, AbuseIPDB, OTX, URLScan)

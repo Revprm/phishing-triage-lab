@@ -1,6 +1,6 @@
 # Phishing Triage Lab
 
-A cybersecurity project for investigating phishing emails - from intake to verdict using header forensics, IOC enrichment, Splunk SPL hunts, and MITRE ATT&CK mapping.
+A cybersecurity project for investigating phishing emails - from intake to verdict using header forensics, IOC enrichment, and MITRE ATT&CK mapping.
 
 ## Overview
 
@@ -9,8 +9,7 @@ This lab handles phishing emails end-to-end:
 2. **IOC extraction** - URLs, IPs, domains, hashes (defanged input handled)
 3. **Enrichment** - VirusTotal, AbuseIPDB, OTX, URLScan + heuristics
 4. **Scoring** - `0-100` → FP / Suspicious / Confirmed
-5. **Documentation** - 8-section case file + markdown report
-6. **Detection** - Splunk SPL + Sigma rule
+5. **Documentation** - markdown report with timeline and MITRE mapping
 
 Flow: `Intake → Header Analysis → IOC Extract → Enrich → Score → Verdict → Document` - see `docs/02_methodology.md`.
 
@@ -28,7 +27,6 @@ flowchart TD
     H --> I
     I --> J[Verdict 0-100<br/>FP / Suspicious / Confirmed]
     J --> K[Containment + MITRE + Timeline]
-    J --> L[Splunk SPL Hunt]
 ```
 
 ## Repo Structure
@@ -41,8 +39,7 @@ phishing-triage-lab/
 │   ├── 01_lab-setup.md              # Install + keys + offline mode
 │   ├── 02_methodology.md            # NIST, Diamond Model, MITRE, scoring
 │   ├── 03_demo-guide.md             # How to run the lab
-│   ├── 04_detection-engineering.md  # Splunk detections
-│   └── 05_analyst-notes.md          # Gaps & next steps
+│   └── 04_notes.md          # Gaps & next steps
 ├── src/phishlab/                    # Toolkit
 │   ├── extract.py                   # IOC regex + defang/refang
 │   ├── header.py                    # Header forensics
@@ -56,9 +53,6 @@ phishing-triage-lab/
 │   ├── headers/sample.eml           # Sample header
 │   ├── reports/report.md            # Generated report (make demo)
 │   └── screenshots/                 # VT/URLScan screenshots
-├── queries/
-│   ├── splunk.spl                   # SPL hunts
-│   └── sigma.yml                    # Sigma rule
 ├── tests/test_extract.py
 ├── requirements.txt
 ├── Makefile
@@ -113,10 +107,6 @@ Signals: VT ≥5 hits (+90), AbuseIPDB ≥75, OTX ≥3 (+20), lookalike +25, sho
 | `make enrich FILE=artifacts/iocs/case-03.txt` | Live enrichment |
 | `make header FILE=artifacts/headers/sample.eml` | Header forensics |
 | `make test` | Run tests |
-
-## Detection
-
-Splunk SPL hunts in `queries/splunk.spl` - lookalike burst, campaign sweep, risky attachments, mailbox-rule follow-on. Sigma rule in `queries/sigma.yml` (convert to SPL via `sigma-cli`). Details in `docs/04_detection-engineering.md`.
 
 ## Sources (safe, no detonation)
 

@@ -125,41 +125,10 @@ Each investigation should have:
 MITRE:
 - `T1566.001` Spearphishing Attachment
 - `T1566.002` Spearphishing Link (incl. QR)
-- If creds harvested: `T1078` Valid Accounts, `T1137` / `T1114` follow-on (hunt via `queries/splunk.spl:4`)
+- If creds harvested: `T1078` Valid Accounts, `T1137` / `T1114` follow-on
 
-Containment template (Splunk):
-Block `[IOC defanged]` at SEG/firewall, quarantine message ID `[ID]` tenant-wide, force reset for `[user]`, revoke sessions, Splunk hunt `index=o365 Operation=New-InboxRule UserId=[user]` 24h pre/post click.
-
----
-
-## Appendix - Hunt Queries (Splunk SPL)
-
-See `queries/splunk.spl` + `queries/sigma.yml`.
-
-**Lookalike / burst:**
-```spl
-index=email sourcetype=ms:o365:management
-| eval sender_domain=mvindex(split(From,"@"),1)
-| stats count values(Subject) as subjects values(recipient) as rcpts by sender_domain
-| where count>10
-| eval is_lookalike=if(match(sender_domain,"micorsoft|micosoft|paypa1|arnazon|g00gle|support-|-security"),1,0)
-| where is_lookalike=1 OR count>50
-| sort -count
-```
-
-**Campaign sweep:**
-```spl
-index=email
-| where like(Subject,"INV-8841%") OR like(Subject,"Password expiry%")
-| stats dc(recipient) as rcpts count by sender_domain Subject
-| where count>5
-```
-
-**Mailbox rules follow-on (T1137):**
-```spl
-index=o365 sourcetype="o365:management" Workload=Exchange Operation IN ("New-InboxRule","Set-InboxRule")
-| where UserId="victim@company.com" | table _time Operation Rules
-```
+Containment template:
+Block `[IOC defanged]` at SEG/firewall, quarantine message ID `[ID]` tenant-wide, force reset for `[user]`, revoke sessions, review mailbox rules 24h pre/post click.
 
 ---
 

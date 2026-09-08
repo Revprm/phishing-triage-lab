@@ -5,7 +5,7 @@ PIP=pip
 SRC=src
 
 help:
-	@echo "Phishing Investigation Lab - make targets"
+	@echo "Phishing Triage Lab - make targets"
 	@echo "  make demo        # mock enrichment on sample IOCs → artifacts/reports/report.md"
 	@echo "  make enrich FILE=path  # live enrichment on FILE"
 	@echo "  make header FILE=eml   # header forensics on .eml"

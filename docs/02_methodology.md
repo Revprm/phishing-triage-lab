@@ -10,7 +10,7 @@ How the lab works: NIST workflow, Diamond Model, MITRE mapping, and scoring.
 | Analyze | Header + IOC extraction | `artifacts/headers/*.eml`, `phishlab/header.py`, `phishlab/extract.py` | Step 2-3 |
 | Analyze | Reputation enrichment | `artifacts/reports/report.md` | Step 4 |
 | Respond | Verdict → containment | Report + timeline | Step 5-6 |
-| Recover | Detection gap + rule | `queries/sigma.yml` | Step 6 + docs/04 |
+| Recover | Detection gap + rule | Notes | Step 6 |
 
 ## Diamond Model
 
@@ -42,7 +42,7 @@ Example investigation (lookalike M365 harvest):
 | T1566.002 - Spearphishing Link | Link or QR-embedded URL | Case 02, 03 | URL + shortener, lookalike |
 | T1078 - Valid Accounts | Creds entered on harvest page | Case 03 | Reporter confirmed login |
 | T1137 - Office Application Startup | Follow-on: mailbox rule | Case 03 follow-on | Forwarding rules |
-| T1114 - Email Collection | Follow-on: mailbox exfil | Case 03 follow-on | Forwarding rules (see `queries/splunk.spl`) |
+| T1114 - Email Collection | Follow-on: mailbox exfil | Case 03 follow-on | Forwarding rules |
 | T1204.001 - User Execution | Click / scan QR | Case 02, 03 | Timeline: received → clicked |
 
 Phrase in notes: `T1566.002 → T1078 (if creds). Hunt T1137/T1114 24h post-click.`

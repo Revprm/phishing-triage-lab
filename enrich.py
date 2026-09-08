@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Phishing Triage Lab (Splunk SOC) - IOC Enricher (CLI wrapper)
+Phishing Triage Lab - IOC Enricher (CLI wrapper)
 
 Input:  text file with IOCs (one per line, defanged OK, or raw .eml/text)
 Output: markdown report + optional JSON/CSV for SIEM/SOAR ingestion
@@ -49,7 +49,7 @@ from phishlab.scoring import verdict  # noqa: F401
 
 def main():
     ap = argparse.ArgumentParser(
-        description="Phishing IOC enricher - Phishing Triage Lab (Splunk SOC)",
+        description="Phishing IOC enricher - Phishing Triage Lab",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="Examples:\n"
         "  python enrich.py -f artifacts/iocs/iocs-sample.txt -o report.md --mock\n"
