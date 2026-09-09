@@ -26,7 +26,6 @@ def analyze_headers(path: str) -> dict:
     date_h = _get_header(msg, "Date")
     list_unsub = _get_header(msg, "List-Unsubscribe")
 
-    # Parse SPF/DKIM/DMARC from Authentication-Results
     def check_auth(token: str) -> str:
         m = re.search(rf"{token}\s*=\s*(pass|fail|none|softfail|neutral|permerror|temperror)", auth_results, re.IGNORECASE)
         return m.group(1).lower() if m else "not present"
@@ -35,7 +34,6 @@ def analyze_headers(path: str) -> dict:
     dkim = check_auth("dkim")
     dmarc = check_auth("dmarc")
 
-    # Mismatch signals
     def extract_email(s: str) -> str:
         m = re.search(r"[\w\.-]+@[\w\.-]+\.\w+", s)
         return m.group(0).lower() if m else ""
@@ -58,13 +56,11 @@ def analyze_headers(path: str) -> dict:
         low_display = from_h.lower()
         brand_in_display = any(b in low_display for b in brands)
         if brand_in_display and from_email and not any(b in from_email for b in brands):
-            # crude: display says Microsoft but email not microsoft.com
             display_spoof = True
             mismatches.append(f"Display-name spoof: '{from_h}' vs envelope {from_email}")
 
-    # Received chain: first external hop
-    first_hop = received[-1] if received else ""  # last in list = earliest
-    # Try extract IP from first_hop
+    # Received chain: last in list = earliest hop
+    first_hop = received[-1] if received else ""
     hop_ip = ""
     m = re.search(r"\[(\d{1,3}(?:\.\d{1,3}){3})\]", first_hop)
     if m:
@@ -73,21 +69,18 @@ def analyze_headers(path: str) -> dict:
         m = re.search(r"\b\d{1,3}(?:\.\d{1,3}){3}\b", first_hop)
         hop_ip = m.group(0) if m else ""
 
-    # Lookalike
     lookalike = False
     low_from = from_email.lower()
     lookalike_hints = ["micorsoft", "micosoft", "paypa1", "arnazon", "g00gle", "support-", "-security", "-login"]
     if any(h in low_from for h in lookalike_hints):
         lookalike = True
 
-    # Bulk / FP signals
     bulk_signals = []
     if list_unsub:
         bulk_signals.append("List-Unsubscribe present (bulk mail, lowers suspicion)")
     if "mailing list" in from_h.lower() or "newsletter" in from_h.lower() or "noreply" in from_h.lower():
         bulk_signals.append("Bulk sender pattern in From")
 
-    # Scoring the header
     score = 0
     reasons = []
     if spf == "fail" or dkim == "fail" or dmarc == "fail":

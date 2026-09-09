@@ -36,7 +36,6 @@ except ImportError:
     print("Missing dependency: pip install -r requirements.txt", file=sys.stderr)
     sys.exit(1)
 
-# Import modular toolkit
 from phishlab.config import ABUSEIPDB_KEY, OTX_API_KEY, VT_API_KEY
 from phishlab.extract import extract_iocs
 from phishlab.report import to_markdown, to_json, write_csv
@@ -88,7 +87,6 @@ def main():
 
     results = [score_ioc(i, mock=use_mock) for i in iocs]
 
-    # Write outputs
     md = to_markdown(results, args.file)
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -108,7 +106,6 @@ def main():
         write_csv(results, str(cp))
         print(f"Wrote {cp}")
 
-    # Summary line
     if results:
         top = max(results, key=lambda x: x["score"])
         print(f"Top: {top['value']} → {top['score']}/100 {verdict(top['score'])}")

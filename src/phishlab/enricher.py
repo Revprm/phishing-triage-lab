@@ -85,7 +85,6 @@ def urlscan_lookup(url: str) -> dict:
     if not URLSCAN_API_KEY:
         return {"skipped": True, "reason": "no URLSCAN_API_KEY"}
     try:
-        # Use search API: https://urlscan.io/api/v1/search/?q=domain:example.com
         r = requests.get(
             "https://urlscan.io/api/v1/search/",
             params={"q": f'page.url:"{url}"'},
@@ -95,7 +94,6 @@ def urlscan_lookup(url: str) -> dict:
         r.raise_for_status()
         j = r.json()
         total = j.get("total", 0)
-        # Take first result verdict if available
         results = j.get("results", [])
         verdict = results[0].get("verdicts", {}).get("overall", {}) if results else {}
         return {"total": total, "malicious": verdict.get("malicious", False), "score": verdict.get("score", 0)}

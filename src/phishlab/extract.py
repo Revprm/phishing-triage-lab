@@ -13,7 +13,7 @@ def refang(s: str) -> str:
     s = s.replace("hxxp://", "http://").replace("hxxps://", "https://")
     s = s.replace("hxxps", "https").replace("hxxp", "http")
     s = s.replace("[.]", ".").replace("(.)", ".").replace("[@]", "@").replace("(@)", "@")
-    s = s.replace("[.]", ".")  # idempotent
+    s = s.replace("[.]", ".")
     # handle [dot] / (dot) variants
     s = re.sub(r"\[\s*dot\s*\]", ".", s, flags=re.IGNORECASE)
     s = re.sub(r"\(\s*dot\s*\)", ".", s, flags=re.IGNORECASE)
@@ -23,7 +23,6 @@ def refang(s: str) -> str:
 def defang(s: str) -> str:
     """Defang for safe display in reports/tickets."""
     s = s.replace("http://", "hxxp://").replace("https://", "hxxps://")
-    # avoid double-defang
     s = s.replace(".", "[.]")
     s = s.replace("@", "[@]")
     return s
@@ -48,7 +47,6 @@ def classify(value: str) -> str:
     if "@" in v and re.fullmatch(r"\S+@\S+\.\S+", v):
         return "email"
     if re.fullmatch(r"[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?:/\S*)?", v):
-        # contains dot+TLD, no scheme, no @
         return "domain"
     return "unknown"
 
@@ -73,7 +71,6 @@ def extract_iocs(path: str) -> list[dict]:
             for m in pattern.findall(line):
                 raw = m
                 clean = refang(m).strip(".,;)\"'<>")
-                # filter obvious false positives
                 if len(clean) < 4:
                     continue
                 if clean.lower() in ("http://", "https://"):

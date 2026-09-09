@@ -29,7 +29,6 @@ def to_markdown(results: list[dict], source_file: str) -> str:
             lines.append(f"- Heuristics: {', '.join(r['flags'])}")
         for src in ("vt", "abuse", "otx"):
             lines.append(f"- {src}: {r.get(src, {})}")
-        # urlscan optional
         if "urlscan" in r:
             lines.append(f"- urlscan: {r.get('urlscan', {})}")
         lines.append("")

@@ -26,7 +26,6 @@ def heuristic(value: str, itype: str) -> list[str]:
         dom = re.sub(r"^https?://", "", low).split("/")[0].split("?")[0].split("#")[0].split(":")[0]
         if dom in SHORTENERS:
             flags.append("url-shortener")
-        # QR-embedded / obfuscated patterns
         if "qr" in low or "barcode" in low:
             flags.append("qr-embedded")
     # detect homograph-ish patterns: xn--, multiple hyphens
@@ -34,7 +33,6 @@ def heuristic(value: str, itype: str) -> list[str]:
         flags.append("possible-homograph")
     if low in (EICAR_SHA256, EICAR_MD5, EICAR_SHA1):
         flags.append("eicar-test-file")
-    # attachment risk extensions
     if itype in ("url", "domain") and any(low.endswith(ext) for ext in (".iso", ".img", ".html", ".htm", ".xlsm", ".one", ".lnk", ".zip")):
         flags.append("risky-extension")
     return flags

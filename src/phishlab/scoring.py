@@ -46,7 +46,6 @@ def score_ioc(ioc: dict, mock: bool = False) -> dict:
         })
         return result
 
-    # --- Live enrichment ---
     vt = vt_lookup(value, itype) if itype in ("md5", "sha1", "sha256", "domain", "ip", "url") else {"skipped": True, "reason": "type not supported"}
     result["vt"] = vt
     if vt.get("malicious", 0) and vt.get("total", 0):
